@@ -1,5 +1,6 @@
 import json
 import os
+import getpass  # For hiding passwords
 
 # File where we store users
 USER_FILE = "users.json"
@@ -21,7 +22,7 @@ while True:
 
     if choice == "1":
         username = input("Enter your username: ")
-        password = input("Enter your password: ")
+        password = getpass.getpass("Enter your password: ")  # Password is hidden
 
         if username in users and users[username] == password:
             print(f"Login successful! Welcome, {username}")
@@ -33,7 +34,7 @@ while True:
         if new_username in users:
             print("Username already exists. Try again.")
         else:
-            new_password = input("Choose a password: ")
+            new_password = getpass.getpass("Choose a password: ")
             users[new_username] = new_password
 
             # Save users to file
